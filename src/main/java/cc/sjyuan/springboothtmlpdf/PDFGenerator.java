@@ -33,7 +33,7 @@ public class PDFGenerator {
 
 
     public static void documentToPDFWithAspose() throws Exception {
-        Document doc = new Document("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/quotation.docx");
+//        Document doc = new Document("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/quotation.docx");
         Document doc = new Document("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/quotation.odt");
         doc.save("Aspose_DocToPDF.pdf", SaveFormat.PDF); //Save the document in PDF format.
     }
