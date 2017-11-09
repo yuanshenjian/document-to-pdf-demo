@@ -16,10 +16,7 @@ import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.thymeleaf.TemplateEngine;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,20 +27,20 @@ public class PDFGenerator {
     public static void main(String[] args) throws Exception {
 //        odtToPDFWithFreemarker();
 //        odtToPDFWithVelocity();
-//        docToPDFWithVelocity();
-        documentToPDFWithAspose();
+        docToPDF();
+//        documentToPDFWithAspose();
     }
 
 
     public static void documentToPDFWithAspose() throws Exception {
+        Document doc = new Document("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/quotation.docx");
         Document doc = new Document("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/quotation.odt");
         doc.save("Aspose_DocToPDF.pdf", SaveFormat.PDF); //Save the document in PDF format.
     }
 
-    public static void docToPDFWithVelocity() throws IOException, XDocReportException {
+    public static void docToPDF() throws IOException, XDocReportException {
         XWPFDocument document = new XWPFDocument(PDFGenerator.class.getClassLoader().getResourceAsStream("quotation.docx"));
-        File outFile = new File("target/DocxResume.pdf");
-        outFile.getParentFile().mkdirs();
+        File outFile = new File("quotation.pdf");
         OutputStream out = new FileOutputStream(outFile);
         PdfOptions options = null;
         PdfConverter.getInstance().convert(document, out, options);
