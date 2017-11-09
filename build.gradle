@@ -1,0 +1,44 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'cc.sjyuan'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.xhtmlrenderer:flying-saucer-pdf:9.1.7')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.odt:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.freemarker:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.docx:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.odt.odfdom:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.xhtml:2.0.1')
+	compile 'fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf:2.0.1'
+	compile files('libs/aspose-words-17.10-jdk16.jar')
+
+	// https://mvnrepository.com/artifact/org.jodconverter/jodconverter-core
+	compile group: 'com.artofsolving', name: 'jodconverter', version: '2.2.1'
+
+
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

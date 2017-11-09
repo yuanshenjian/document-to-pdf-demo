@@ -1,0 +1,10 @@
+server:
+    port: 9999
+spring:
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    prefix: templates/
+    template-resolver-order: 1
+    encoding: UTF-8
+    suffix: .html

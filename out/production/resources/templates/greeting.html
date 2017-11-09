@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <style>
+        p {
+            color: blue;
+        }
+
+        .test-div {
+            width: 500px;
+            height: 500px;
+            background: red url('../static/img/test.png');
+        }
+    </style>
+</head>
+<body>
+<p th:text="'Hello, ' + ${name} + '!'"/>
+<div class="test-div"></div>
+</body>
+</html>
