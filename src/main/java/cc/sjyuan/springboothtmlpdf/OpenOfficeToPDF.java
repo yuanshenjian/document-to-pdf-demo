@@ -8,7 +8,7 @@ import java.io.File;
 
 public class OpenOfficeToPDF {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
         configuration.setPortNumber(8100);
         configuration.setOfficeHome("/Applications/OpenOffice.app/Contents");
@@ -23,7 +23,7 @@ public class OpenOfficeToPDF {
         officeManager.stop();
     }
 
-    private static void createPDF(OfficeDocumentConverter converter, File sourceFile, File outputFile) {
+    private static void createPDF(OfficeDocumentConverter converter, File sourceFile, File outputFile) throws Exception {
         long start = System.currentTimeMillis();
         converter.convert(sourceFile, outputFile);
         System.err.println("Generate pdf/HelloWorld.pdf with "
