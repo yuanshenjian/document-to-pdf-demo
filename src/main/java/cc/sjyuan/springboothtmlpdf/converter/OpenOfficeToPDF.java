@@ -1,4 +1,4 @@
-package cc.sjyuan.springboothtmlpdf;
+package cc.sjyuan.springboothtmlpdf.converter;
 
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
 import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
@@ -11,6 +11,7 @@ public class OpenOfficeToPDF {
     public static void main(String[] args) throws Exception {
         DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
         configuration.setPortNumber(8100);
+        configuration.setRetryTimeout(1000);
         configuration.setOfficeHome("/Applications/OpenOffice.app/Contents");
         OfficeManager officeManager = configuration.buildOfficeManager();
         OfficeDocumentConverter documentConverter = new OfficeDocumentConverter(officeManager);

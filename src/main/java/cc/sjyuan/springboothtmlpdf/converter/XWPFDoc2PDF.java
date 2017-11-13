@@ -1,4 +1,4 @@
-package cc.sjyuan.springboothtmlpdf;
+package cc.sjyuan.springboothtmlpdf.converter;
 
 import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
@@ -14,11 +14,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class XWPFDoc2PDF {
-
     public static void main(String[] args) throws Exception {
         InputStream in = XWPFDoc2PDF.class.getClassLoader().getResourceAsStream("input/xwpf-input.docx");
         File outputFile = new File("src/main/resources/output/xwpf-output.docx");
         OutputStream out = new FileOutputStream(outputFile);
+
+        long start = System.currentTimeMillis();
         replaceTemplate(in, out);
         out.close();
 
@@ -26,7 +27,7 @@ public class XWPFDoc2PDF {
         OutputStream out1 = new FileOutputStream(new File("src/main/resources/output/xwpf-output.pdf"));
         docToPDF(in1, out1);
         out1.close();
-
+        System.err.println("*********Take " + (System.currentTimeMillis() - start) + " ms*********");
         System.exit(0);
     }
 
@@ -41,7 +42,6 @@ public class XWPFDoc2PDF {
 
     public static void docToPDF(InputStream in, OutputStream out) throws Exception {
         XWPFDocument document = new XWPFDocument(in);
-
         PdfOptions options = PdfOptions.create().fontEncoding("utf-8");
         PdfConverter.getInstance().convert(document, out, options);
     }

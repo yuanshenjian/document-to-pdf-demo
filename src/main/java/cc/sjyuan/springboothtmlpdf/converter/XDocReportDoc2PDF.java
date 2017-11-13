@@ -1,4 +1,4 @@
-package cc.sjyuan.springboothtmlpdf;
+package cc.sjyuan.springboothtmlpdf.converter;
 
 import cc.sjyuan.springboothtmlpdf.model.Invoice;
 import cc.sjyuan.springboothtmlpdf.model.InvoiceRow;
@@ -20,19 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XDocReportDoc2PDF {
-
     public static void main(String[] args) throws Exception {
         InputStream in = XDocReportDoc2PDF.class.getClassLoader().getResourceAsStream("input/xdocreport-input.odt");
         OutputStream out = new FileOutputStream(new File("src/main/resources/output/xdocreport-output.pdf"));
-
+        long start = System.currentTimeMillis();
         odtToPDFWithVelocity(in, out);
-
         out.close();
+        System.err.println("*********Take " + (System.currentTimeMillis() - start) + " ms*********");
         System.exit(0);
     }
 
-
-    public static void odtToPDFWithVelocity(InputStream in, OutputStream out) throws Exception {
+    private static void odtToPDFWithVelocity(InputStream in, OutputStream out) throws Exception {
         IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Velocity);
         IContext ctx = report.createContext();
 
@@ -46,13 +44,6 @@ public class XDocReportDoc2PDF {
         ctx.put("sender", sender);
 
         List<InvoiceRow> rows = new ArrayList<>();
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
-        rows.add(generateInvoiceRow());
         rows.add(generateInvoiceRow());
         rows.add(generateInvoiceRow());
         ctx.put("rows", rows);

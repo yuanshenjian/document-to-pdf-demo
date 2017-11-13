@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.8.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'java'
@@ -19,29 +19,29 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	compile('org.xhtmlrenderer:flying-saucer-pdf:9.1.7')
-	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.odt:2.0.1')
-	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.freemarker:2.0.1')
-	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:2.0.1')
-	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.docx:2.0.1')
-	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.odt.odfdom:2.0.1')
-	compile('fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.xhtml:2.0.1')
-	compile 'fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf:2.0.1'
-	compile files('libs/aspose-words-17.10-jdk16.jar')
-	compile files('libs/jodconverter-core-3.0-beta-4.jar')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.xhtmlrenderer:flying-saucer-pdf:9.1.7')
+    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.freemarker:2.0.1')
 
-	// https://mvnrepository.com/artifact/org.jodconverter/jodconverter-core
-	compile group: 'com.artofsolving', name: 'jodconverter', version: '2.2.1'
+    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.odt:2.0.1')
+    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.odt.odfdom:2.0.1')
 
-// https://mvnrepository.com/artifact/org.docx4j/docx4j
-	compile group: 'org.docx4j', name: 'docx4j', version: '2.8.1'
+    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:2.0.1')
+    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.docx:2.0.1')
+    compile('fr.opensagres.xdocreport:fr.opensagres.poi.xwpf.converter.pdf:2.0.1')
+
+    compile files('libs/aspose-words-17.10-jdk16.jar')
+    compile files('libs/jodconverter-core-3.0-beta-4.jar')
+
+    compile ('com.artofsolving:jodconverter:2.2.1')
+
+    compile ('org.docx4j:docx4j:2.8.1')
 
 
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
