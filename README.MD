@@ -74,7 +74,6 @@ public class Doc4JDoc2PDF {
     }
 
     private static void createPDF(InputStream inputStream, OutputStream out) throws Exception {
-
         WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(inputStream);
 
         PdfSettings pdfSettings = new PdfSettings();
@@ -147,8 +146,8 @@ Dependency
 ```groovy
 dependencies{
 	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.odt:2.0.1')
-    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:2.0.1')
-    compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.odt.odfdom:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:2.0.1')
+	compile('fr.opensagres.xdocreport:fr.opensagres.xdocreport.converter.odt.odfdom:2.0.1')
 }
 ```
 
