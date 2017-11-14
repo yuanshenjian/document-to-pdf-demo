@@ -38,7 +38,6 @@ dependencies {
     compile files('libs/aspose-words-17.10-jdk16.jar')
     compile files('libs/jodconverter-core-3.0-beta-4.jar')
 
-    compile ('com.artofsolving:jodconverter:2.2.1')
 
     compile ('org.docx4j:docx4j:2.8.1')
 

@@ -7,7 +7,6 @@ import org.artofsolving.jodconverter.office.OfficeManager;
 import java.io.File;
 
 public class OpenOfficeToPDF {
-
     public static void main(String[] args) throws Exception {
         DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
         configuration.setPortNumber(8100);

@@ -5,10 +5,53 @@
 
 
 ## 解决方案
-针对开源的库Doc4j、XDocReport、Jodoconverter以及非开源的库Aspose进行了Spike，每种解决方案各有利弊。
+针对开源的库doc4xj、xdocreport、jodconverter以及非开源的库aspose进行了Spike，每种解决方案各有利弊。
+
+### docx4j
+- 优点：
+	- 依赖简单
+
+- 缺点：
+	- 转换效果不堪入目，果断不采取
+
+### xdocreport + xwpf
+- 优点：
+	- 依赖简单，可以单独运行在JVM
+
+- 缺点：
+	- 模板替换率不高。
+	- 转换后中文丢失。
+
+### xdocreport + odfdom
+- 优点：
+	- 依赖简单，可以单独运行在JVM
+	- 模板替换率高。
+
+- 缺点：
+	- 转换后中文丢失。
+
+### jodconverter + openoffice
+- 优点：
+	- 转换率高。
+	- 可以使用Openoffice客户端可视化编辑。
+
+- 缺点：
+	- 依赖额外的OpenOffice服务，而服务又不稳定。
+	- jodconverter 没有继续维护。
+
+### [aspose](https://www.aspose.com/)
+- 优点：
+	- 可以转换多种格式，转换率高。
+	- 开发代码很少，易于集成。
+
+- 缺点：
+	- 收费昂贵，单开发者单部署的标准Support就收费 $1599
+	- 黑盒转换，团队无法自己控制，依赖官方团队。
 
 
-### Doc4j
+## 示例代码
+
+### docx4j
 Dependency
 
 ```groovy
@@ -44,13 +87,8 @@ public class Doc4JDoc2PDF {
 // *********Take 8934 ms*********
 ```
 
-效果
 
-```
-1. 转换效果不堪入目，不推荐使用。
-```
-
-### XDocreport + xwpf
+### xdocreport + xwpf
 
 Dependency
 
@@ -101,16 +139,8 @@ public class XWPFDoc2PDF {
 // *********Take 4756 ms*********
 ```
 
-效果
 
-```
-1. 模板替换效果差，很多变量识别不了。
-2. 样式绝大部分中文丢失，英文可以转换。
-3. 字体样式有变化。
-```
-
-
-### XDocReport + odfdom
+### xdocreport + odfdom
 
 Dependency
 
@@ -161,20 +191,91 @@ public class XDocReportDoc2PDF {
 // *********Take 13696 ms*********
 ```
 
-效果
+### jodconverter + openoffice
 
+Dependency
+
+```groovy
+dependencies{
+    compile files('libs/jodconverter-core-3.0-beta-4.jar')
+}
 ```
-1. 模板替换良好，支持循环和条件判断。
-2. 样式绝大部分中文丢失，英文可以转换。
-3. 字体样式有变化。
+> jodconverter依赖下载地址: [https://code.google.com/archive/p/jodconverter/downloads](https://code.google.com/archive/p/jodconverter/downloads)
+
+
+Java Code
+
+```java
+public class OpenOfficeToPDF {
+    public static void main(String[] args) throws Exception {
+        DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
+        configuration.setPortNumber(8100);
+        configuration.setRetryTimeout(1000);
+        configuration.setOfficeHome("/Applications/OpenOffice.app/Contents");
+        OfficeManager officeManager = configuration.buildOfficeManager();
+        OfficeDocumentConverter documentConverter = new OfficeDocumentConverter(officeManager);
+        officeManager.start();
+
+        File sourceFile = new File("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/input/openoffice-input.odt");
+        File outputFile = new File("src/main/resources/output/openoffice-output.pdf");
+        createPDF(documentConverter, sourceFile, outputFile);
+
+        officeManager.stop();
+    }
+
+    private static void createPDF(OfficeDocumentConverter converter, File sourceFile, File outputFile) throws Exception {
+        long start = System.currentTimeMillis();
+        converter.convert(sourceFile, outputFile);
+        System.err.println("Generate pdf/HelloWorld.pdf with "
+                + (System.currentTimeMillis() - start) + "ms");
+    }
+}
 ```
 
-### Jodocconverter + openoffice
+1. 安装 [Openoffice](https://www.openoffice.org/download/)
 
+2. 进入安装目录
 
+	- `$ /Applications/OpenOffice.app/Contents/program`
+
+3. 启动服务
+
+	- `$ ./soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard`
 
 
 ### Aspose
+
+Dependency
+
+```groovy
+dependencies{
+	compile files('libs/aspose-words-17.10-jdk16.jar')
+}
+```
+
+> aspose依赖下载地址: [https://www.aspose.com/community/getting-started.aspx](https://www.aspose.com/community/getting-started.aspx)
+
+
+Java Code
+
+```java
+public class AsposeDoc2PDF {
+    public static void main(String[] args) throws Exception {
+        documentToPDFWithAspose("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/input/aspose-input.odt",
+                "src/main/resources/output/aspose-output.pdf");
+    }
+
+    public static void documentToPDFWithAspose(String absoluteSourceFilePath, String savedFilePath) throws Exception {
+        Document doc = new Document(absoluteSourceFilePath);
+        doc.save(savedFilePath, SaveFormat.PDF); //Save the document in PDF format.
+    }
+}
+```
+
+## 另辟蹊径
+*待续*
+
+
 
 
 
