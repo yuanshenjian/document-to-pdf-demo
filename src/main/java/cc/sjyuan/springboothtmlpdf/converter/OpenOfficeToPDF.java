@@ -8,6 +8,7 @@ import java.io.File;
 
 public class OpenOfficeToPDF {
     public static void main(String[] args) throws Exception {
+        long start = System.currentTimeMillis();
         DefaultOfficeManagerConfiguration configuration = new DefaultOfficeManagerConfiguration();
         configuration.setPortNumber(8100);
         configuration.setRetryTimeout(1000);
@@ -18,15 +19,9 @@ public class OpenOfficeToPDF {
 
         File sourceFile = new File("/Users/sjyuan/Personal-sjyuan/IdeaProjects/springboot-html-pdf/src/main/resources/input/openoffice-input.odt");
         File outputFile = new File("src/main/resources/output/openoffice-output.pdf");
-        createPDF(documentConverter, sourceFile, outputFile);
+        documentConverter.convert(sourceFile, outputFile);
 
         officeManager.stop();
-    }
-
-    private static void createPDF(OfficeDocumentConverter converter, File sourceFile, File outputFile) throws Exception {
-        long start = System.currentTimeMillis();
-        converter.convert(sourceFile, outputFile);
-        System.err.println("Generate pdf/HelloWorld.pdf with "
-                + (System.currentTimeMillis() - start) + "ms");
+        System.err.println("*********Take " + (System.currentTimeMillis() - start) + " ms *********");
     }
 }

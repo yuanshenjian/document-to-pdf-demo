@@ -7,14 +7,14 @@
 ## Spike解决方案
 针对开源的库doc4xj、xdocreport、jodconverter以及非开源的库aspose进行了Spike，每种解决方案各有利弊。
 
-### docx4j
+### docx4j(docx -> pdf)
 - 优点：
 	- 依赖简单
 
 - 缺点：
 	- 转换效果不堪入目，果断不采取
 
-### xdocreport + xwpf
+### xdocreport + xwpf(docx -> pdf)
 - 优点：
 	- 依赖简单，可以单独运行在JVM
 
@@ -22,7 +22,7 @@
 	- 模板替换率不高。
 	- 转换后中文丢失。
 
-### xdocreport + odfdom
+### xdocreport + odfdom(odt -> pdf)
 - 优点：
 	- 依赖简单，可以单独运行在JVM
 	- 模板替换率高。
@@ -30,7 +30,7 @@
 - 缺点：
 	- 转换后中文丢失。
 
-### jodconverter + openoffice
+### jodconverter + openoffice(odt -> pdf)
 - 优点：
 	- 转换率高。
 	- 可以使用Openoffice客户端可视化编辑。
@@ -39,7 +39,7 @@
 	- 依赖额外的OpenOffice服务，而服务又不稳定。
 	- jodconverter 没有继续维护。
 
-### [aspose](https://www.aspose.com/)
+### [aspose](https://www.aspose.com/)(doc, docx, odt -> pdf)
 - 优点：
 	- 可以转换多种格式，转换率高。
 	- 开发代码很少，易于集成。
@@ -272,19 +272,27 @@ public class AsposeDoc2PDF {
 }
 ```
 
-## 另辟蹊径
+## 另辟蹊径(XHTML/HTML -> PDF)
 
-### HTML Template Engine
-
-thymeleaf + flying-saucer-pdf ?
+### thymeleaf + flying-saucer-pdf?
 
 - 优点
 	- 利于开发者维护。
 	- 可以并行修改文件。
 	- 待挖掘。
 - 缺点
+	- 商业合同对尺寸要求苛刻，css样式较难调整。
 	- 待挖掘。
 
+
+### thymeleaf + wkhtmltopdf?
+- 优点
+	- 利于开发者维护。
+	- 可以并行修改文件。
+	- 已经有成功的生产实践。
+- 缺点
+	- 合同对尺寸要求苛刻，css样式较难调整。
+	- 待挖掘。
 
 
 ## 延伸阅读
