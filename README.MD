@@ -274,13 +274,16 @@ public class AsposeDoc2PDF {
 
 ## 另辟蹊径
 
-### HTML Template：thymeleaf + flying-saucer-pdf
+### HTML Template Engine
+
+thymeleaf + flying-saucer-pdf ?
 
 - 优点
 	- 利于开发者维护。
 	- 可以并行修改文件。
+	- 待挖掘。
 - 缺点
-	- 待深入研究。
+	- 待挖掘。
 
 
 
