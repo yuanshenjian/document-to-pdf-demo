@@ -4,7 +4,7 @@
 此工程是一个示例工程，用于演示`Document`到`PDF`的转换。其中`Document`包括了`doc`、`docx`、`odt`。转换前需要将模板待替换的内容使用 [Velocity](http://velocity.apache.org/) 模板引擎进行替换。
 
 
-## 解决方案
+## Spike解决方案
 针对开源的库doc4xj、xdocreport、jodconverter以及非开源的库aspose进行了Spike，每种解决方案各有利弊。
 
 ### docx4j
@@ -188,6 +188,7 @@ public class XDocReportDoc2PDF {
         report.convert(ctx, options, out);
 
     }
+}
 // *********Take 13696 ms*********
 ```
 
