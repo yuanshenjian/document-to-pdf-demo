@@ -274,8 +274,21 @@ public class AsposeDoc2PDF {
 ```
 
 ## 另辟蹊径
-*待续*
 
+### HTML Template：thymeleaf + flying-saucer-pdf
+
+- 优点
+	- 利于开发者维护。
+	- 可以并行修改文件。
+- 缺点
+	- 待深入研究。
+
+
+
+## 延伸阅读
+
+- [How to convert docx/odt to pdf/html with Java?](https://angelozerr.wordpress.com/2012/12/06/how-to-convert-docxodt-to-pdfhtml-with-java/)
+- [How to Run LibreOffice in AWS Lambda for Dirty-Cheap PDFs at Scale](https://hackernoon.com/how-to-run-libreoffice-in-aws-lambda-for-dirty-cheap-pdfs-at-scale-b2c6b3d069b4)
 
 
 
